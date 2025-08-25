@@ -23,9 +23,7 @@ def get_config(filename: str) -> dict:
     
 
 def is_user_in_bypass_group(user: str, bypass_group: list) -> bool:
-    if user in bypass_group:
-        return True
-    sys.exit(1)
+    return user in bypass_group
  
 
 
@@ -48,13 +46,16 @@ def main():
     config = get_config(CONFIG_FILE)
     bypass_group, freezing_dates = unpack_config(config)
 
+
     if is_user_in_bypass_group(GITHUB_ACTOR, bypass_group):
         logging.info(f"User {GITHUB_ACTOR} is in the bypass group, skipping code freezing.")
         sys.exit(0)
+
     else:
         for period, dates in freezing_dates.items():
             from_date = dates.get('from')
             to_date = dates.get('to')
+
             
             if is_today_in_freezing_period(from_date, to_date):
                 logging.warning(f"The current date falls under the '{period}', blocked due to code freezing period.")
