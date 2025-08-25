@@ -1,0 +1,11 @@
+bypass_group:
+  - Vinicius-DevOps
+
+freezing_dates:
+  End of the year:
+    from: 2025-12-25
+    to: 2026-01-10
+
+  Carnival:
+    from: 2026-02-18
+    to: 2026-02-22
