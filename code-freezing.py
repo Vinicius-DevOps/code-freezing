@@ -23,7 +23,11 @@ def get_config(filename: str) -> dict:
     
 
 def is_user_in_bypass_group(user: str, bypass_group: list) -> bool:
-    return user in bypass_group
+    if user in bypass_group:
+        return True
+    sys.exit(1)
+ 
+
 
 def is_today_in_freezing_period(date_from, date_to) -> bool:
     now = datetime.date.today()
